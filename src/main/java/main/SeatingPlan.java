@@ -4,27 +4,25 @@ import java.util.Random;
 
 public class SeatingPlan {
 	
-	static String[][] names = {
+	public static String[][] names = {
 			{"AM","AR","AT","AW","CA","CJ"},
 			{"ER","ED","HH","JB","JK","JL"},
 			{"JG","LM","LC","LP","LC","LH"},
 			{"MF","NV","RR","TK","ZZ","XX"}};
 
-
-	static String[][] shuffle(String[][] names) {
+	public static String[][] shuffle(String[][] names) {
 	    Random random = new Random();
 
-	    for (int i = names.length - 1; i > 0; i--) {
-	        for (int j = names[i].length - 1; j > 0; j--) {
-	            int m = random.nextInt(i + 1);
-	            int n = random.nextInt(j + 1);
+	    for (int row = names.length - 1; row > 0; row--) {
+	        for (int seat = names[row].length - 1; seat > 0; seat--) {
+	            int newRow = random.nextInt(row + 1);
+	            int newSeat = random.nextInt(seat + 1);
 
-	            String temp = names[i][j];
-	            names[i][j] = names[m][n];
-	            names[m][n] = temp;
+	            String temp = names[row][seat];
+	            names[row][seat] = names[newRow][newSeat];
+	            names[newRow][newSeat] = temp;
 	        }
-	    }	   
-	    
+	    }	    
 	    return names;
 	}
 }
